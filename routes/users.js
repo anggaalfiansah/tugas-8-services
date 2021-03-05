@@ -12,7 +12,7 @@ router.route("/").post(UserController.addUser);
 router.route("/:id").patch(UserController.updateUserById);
 
 // Delete Data By ID
-router.route("/:id").patch(UserController.deleteUserById);
+router.route("/:id").delete(UserController.deleteUserById);
 
 // Get User by Username
 router.route("/username/:username").get(UserController.getUserByUsername);
