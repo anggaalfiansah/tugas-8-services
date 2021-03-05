@@ -3,15 +3,16 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+var cors = require('cors');
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+
 dotenv.config({ path: "./config.env" });
 const DB = process.env.DATABASE.replace(
   "<password>",
   process.env.DATABASE_PASSWORD
 );
 
-const mongoose = require("mongoose");
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -22,8 +23,7 @@ mongoose
     console.log("Connected To Database");
   });
 
-var cors = require("cors");
-app.use(cors());
+app.use(cors())
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
