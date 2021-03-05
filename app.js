@@ -23,8 +23,6 @@ mongoose
     console.log("Connected To Database");
   });
 
-app.use(cors())
-
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
