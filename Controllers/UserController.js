@@ -10,19 +10,24 @@ exports.addUser = (req, res) => {
     address: address,
   });
 
-  if(username !== null && email !== null && phone !== null && address !== null){
-  addUser
-    .save()
-    .then((data) => {
-      res.status(200).json({
-        message: "User berhasil ditambahkan",
-        timestamp: req.requestTime,
-        data: data,
+  if (
+    username !== null &&
+    email !== null &&
+    phone !== null &&
+    address !== null
+  ) {
+    addUser
+      .save()
+      .then((data) => {
+        res.status(200).json({
+          message: "User berhasil ditambahkan",
+          timestamp: req.requestTime,
+          data: data,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send("Gagal " + err);
       });
-    })
-    .catch((err) => {
-      res.status(500).send("Gagal " + err);
-    });
   }
 };
 
@@ -101,7 +106,7 @@ exports.getUserByAddress = (req, res) => {
 // Update User By Id
 exports.updateUserById = (req, res) => {
   let { username, email, phone, address } = req.body;
-  
+
   let dataUpdate = {
     username: username,
     email: email,
@@ -130,19 +135,14 @@ exports.updateUserById = (req, res) => {
 // Delete User By Id
 exports.deleteUserById = (req, res) => {
   let id = req.params.id;
-  DataUser.findByIdAndDelete(id, (err, data) => {
-    if (err || data === null) {
-      res.status(400).json({
-        message: "Gagal Update Data",
-        timestamp: req.requestTime,
-      });
+  DataUser.findOneAndDelete({ _id: id }, (err, data) => {
+    if (err) {
+      res.status(400).json(err);
     } else {
       res.status(200).json({
-        message: `User dengan id = ${id} Berhasil diupdate`,
-        timestamp: req.requestTime,
-        beforeUpate: data,
-        afterUpdate: dataUpdate,
+        message: `Users dengan id = ${id} Berhasil dihapus`,
+        data: data,
       });
     }
   });
-}
+};
