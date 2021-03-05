@@ -1,19 +1,6 @@
 var express = require("express");
 var router = express.Router();
 var UserController = require("../Controllers/UserController");
-var app = express();
-
-app.use(function (req, res, next) {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://tugas-8-services-jc.herokuapp.com/users"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 // Get All User
 router.route("/").get(UserController.getAllUser);
