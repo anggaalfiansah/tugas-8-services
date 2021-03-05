@@ -11,6 +11,9 @@ router.route("/").post(UserController.addUser);
 // Update Data By ID
 router.route("/:id").patch(UserController.updateUserById);
 
+// Delete Data By ID
+router.route("/:id").patch(UserController.deleteUserById);
+
 // Get User by Username
 router.route("/username/:username").get(UserController.getUserByUsername);
 

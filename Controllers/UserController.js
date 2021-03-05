@@ -118,7 +118,7 @@ exports.updateUserById = (req, res) => {
       });
     } else {
       res.status(200).json({
-        message: `Produk dengan id = ${id} Berhasil diupdate`,
+        message: `User dengan id = ${id} Berhasil diupdate`,
         timestamp: req.requestTime,
         beforeUpate: data,
         afterUpdate: dataUpdate,
@@ -126,3 +126,23 @@ exports.updateUserById = (req, res) => {
     }
   });
 };
+
+// Delete User By Id
+exports.deleteUserById = (req, res) => {
+  let id = req.params.id;
+  DataUser.findOneAndDelete(id, (err, data) => {
+    if (err || data === null) {
+      res.status(400).json({
+        message: "Gagal Update Data",
+        timestamp: req.requestTime,
+      });
+    } else {
+      res.status(200).json({
+        message: `User dengan id = ${id} Berhasil diupdate`,
+        timestamp: req.requestTime,
+        beforeUpate: data,
+        afterUpdate: dataUpdate,
+      });
+    }
+  });
+}
