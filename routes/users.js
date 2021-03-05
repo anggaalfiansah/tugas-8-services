@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var UserController = require("../Controllers/UserController");
+var app = express();
 
 app.use(function (req, res, next) {
   res.header(
