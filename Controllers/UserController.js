@@ -130,7 +130,7 @@ exports.updateUserById = (req, res) => {
 // Delete User By Id
 exports.deleteUserById = (req, res) => {
   let id = req.params.id;
-  DataUser.findOneAndDelete(id, (err, data) => {
+  DataUser.findByIdAndDelete(id, (err, data) => {
     if (err || data === null) {
       res.status(400).json({
         message: "Gagal Update Data",
